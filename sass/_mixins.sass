@@ -1,0 +1,75 @@
+//    Design & Development By: Julkar N. Nahian
+//    Author: Julkar N. Nahian
+//    Author URL: www.jnahian.com
+//    Author Email: nahian048@gmail.com
+
+// ==================================================== //
+
+=radius($radius: 5px)
+    -webkit-border-radius: $radius
+    -moz-border-radius: $radius
+    -ms-border-radius: $radius
+    border-radius: $radius
+    
+=transition($duration: .3s)
+    -webkit-transition: all linear $duration
+    -moz-transition: all linear $duration
+    -ms-transition: all linear $duration
+    transition: all linear $duration
+    
+=scale($val: 1.2) /*hint - */
+    -webkit-transform: scale($val)
+    -moz-transform: scale($val)
+    -ms-transform: scale($val)
+    transform: scale($val)
+    
+=rotate($val)
+    -webkit-transform: rotate($val)
+    -moz-transform: rotate($val)
+    -ms-transform: rotate($val)
+    transform: rotate($val)
+    
+=translateX($val)
+    -webkit-transform: translateX($val)
+    -moz-transform: translateX($val)
+    -ms-transform: translateX($val)
+    transform: translateX($val)   
+    
+=translateY($val)
+    -webkit-transform: translateY($val)
+    -moz-transform: translateY($val)
+    -ms-transform: translateY($val)
+    transform: translateY($val)
+    
+=translateZ($val)
+    -webkit-transform: translateZ($val)
+    -moz-transform: translateZ($val)
+    -ms-transform: translateZ($val)
+    transform: translateZ($val)
+    
+=body-font($family: $font-default, $weight: 400, $size: $font-size, $color: $font-color)
+    font-family: $font
+    font-weignt: $weight
+    font-size: $size
+    color: $color    
+ 
+=theme-font($size: $font-size, $color: $font-color)
+    font-family: $font
+    font-size: $size
+    color: $color
+
+=heading
+    font-size: 30px
+    font-family: $font
+    font-weight: bold
+    color: $primary
+    span
+        font-size: 25px !important
+        color: $text-gray
+        font-weight: normal
+        
+=bgOpacify($color, $alpha: .5)
+    $red: red($color)
+    $green: green($color)
+    $blue: blue($color)
+    background: rgba($red, $green, $blue, $alpha)
