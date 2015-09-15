@@ -66,7 +66,8 @@ if (!empty($_POST)) {
         } else {
             $ret['message'] = 'Name cannot be empty!';
         }
-    } elseif ($operation == 'LOGIN') {
+    } 
+    elseif ($operation == 'LOGIN') {
         $uname = htmlentities($_POST['uname'], ENT_QUOTES);
         $pass = sha1(md5(htmlentities($_POST['pass'], ENT_QUOTES)));
 
@@ -87,7 +88,30 @@ if (!empty($_POST)) {
         } else {
             $ret['message'] = 'Required Feild empty!';
         }
-    } elseif ($operation == 'ADCLS') {
+    } 
+    elseif ($operation == 'STULOGIN') {
+        $stuid = htmlentities($_POST['stuid'], ENT_QUOTES);
+        $pass = md5(htmlentities($_POST['pass'], ENT_QUOTES));
+
+        if (!empty($stuid) && !empty($pass)) {
+            if ($data = $oDb->q_fetch("select * from student where stuid = '$stuid'")) {
+                if ($data['s_pass'] === $pass) {
+                    $_SESSION['username'] = $stuid;
+                    $_SESSION['LAST_ACTIVITY'] = time();
+                    $ret['success'] = TRUE;
+                    $ret['redirect'] = TRUE;
+                    $ret['redirect_to'] = './';
+                } else {
+                    $ret['message'] = 'Username & Password Doesn\'t match';
+                }
+            } else {
+                $ret['message'] = 'User not registered yet.';
+            }
+        } else {
+            $ret['message'] = 'Required Feild empty!';
+        }
+    } 
+    elseif ($operation == 'ADCLS') {
         $clsname = htmlentities($_POST['classname'], ENT_QUOTES);
         $sec1 = htmlentities($_POST['sec1'], ENT_QUOTES);
         $sec2 = htmlentities($_POST['sec2'], ENT_QUOTES);
@@ -102,7 +126,8 @@ if (!empty($_POST)) {
         } else {
             $ret['message'] = 'Fields are empty!';
         }
-    } elseif ($operation == 'DEL') {
+    } 
+    elseif ($operation == 'DEL') {
         if (isset($_POST['rowid'])) {
             if (!empty($_POST['table'])) {
                 $rowId = $_POST['rowid'];
@@ -148,7 +173,8 @@ if (!empty($_POST)) {
         } else {
             $ret['message'] = 'You must fill-up every field';
         }
-    } elseif ($operation == 'ADSTU') {
+    } 
+    elseif ($operation == 'ADSTU') {
         $name = htmlentities($_POST['name'], ENT_QUOTES);
         $father = htmlentities($_POST['fatname'], ENT_QUOTES);
         $mother = htmlentities($_POST['motname'], ENT_QUOTES);
@@ -188,7 +214,8 @@ if (!empty($_POST)) {
         } else {
             $ret['message'] = 'You must fill-up every field.';
         }
-    } elseif ($operation == 'ADTCLS') {
+    } 
+    elseif ($operation == 'ADTCLS') {
         $stuid = $_POST['stuid'];
         $class = $_POST['class'];
         $section = $_POST['section'];
@@ -210,7 +237,8 @@ if (!empty($_POST)) {
         } else {
             $ret['message'] = 'Select a student first';
         }
-    } elseif ($operation == 'CRTRES') {
+    } 
+    elseif ($operation == 'CRTRES') {
         $exam = $_POST['exam'];
         $class = $_POST['class'];
         $sec = $_POST['section'];
@@ -244,7 +272,8 @@ if (!empty($_POST)) {
         } else {
             $ret['message'] = 'Select an exam first.';
         }
-    } elseif ($operation == 'REGSUBCLS') {
+    } 
+    elseif ($operation == 'REGSUBCLS') {
         if (!empty($_POST)) {
             $class = $_POST['class'];
             if (isset($_POST['subjects'])) {
@@ -267,7 +296,8 @@ if (!empty($_POST)) {
         } else {
             $ret['message'] = 'ERROR! Empty form Submitted';
         }
-    } else {
+    } 
+    else {
         $ret['message'] = 'Operation Not Found';
     }
 }
