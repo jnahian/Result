@@ -35,7 +35,7 @@
             <?php 
                 require_once('../func/functions.php');
                 $oDb = new Database();
-                $query = $oDb->query("SELECT * from class");
+                $query = $oDb->query("SELECT * from class order by class");
                 $sl = 1;
                 while ($result = $oDb->fetch($query)){ ?>
                     <tr>

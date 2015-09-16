@@ -41,7 +41,7 @@ $oDb = new Database();
                 <select class="form-control" name="class" onchange="cngSection(this)">
                     <option value="" default>Select Class</option>
                     <?php 
-                        $qr = $oDb->query("select * from class");
+                        $qr = $oDb->query("select * from class order by class");
                         while ($d = $oDb->fetch($qr)){
                             echo '<option value="'.$d['class'].'">'.$d['class'].'</option>';
                         }

@@ -47,7 +47,7 @@ ul, ol {
 }
 .sidebar h2 {
   margin: 0;
-  border-bottom: 1px solid #65c4ef;
+  border-bottom: 1px solid #b0d6e8;
   font-size: 24px;
   margin-bottom: 20px;
 }
@@ -69,12 +69,12 @@ ul, ol {
   background: #234d93;
 }
 .sidebar ul li:last-child {
-  border-top: 1px solid #65c4ef;
+  border-top: 1px solid #b0d6e8;
 }
 
 /*topbar codes */
 .topbar {
-  border-bottom: 1px solid #65c4ef;
+  border-bottom: 1px solid #b0d6e8;
   overflow: hidden;
 }
 .topbar h3 {
@@ -107,6 +107,28 @@ ul, ol {
   font-size: 14px;
   font-weight: 400;
   line-height: 35px;
+}
+.content .main .each {
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+  background: #f3f3f3;
+  box-shadow: 0 0 10px #2d6ea2;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.content .main .each a {
+  display: block;
+  color: #234d93;
+  padding: 20px;
+}
+.content .main .each a span {
+  font-size: 40px;
+}
+.content .main .each a p {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-weight: 500;
 }
 
 /*login page codes */

@@ -31,6 +31,7 @@
                     } else {
                         alert(ret.message);
                     }
+                    window.location.href = './';
                 },
                 error: function (ret) {
                     alert('AJAX Error!');

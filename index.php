@@ -16,6 +16,7 @@
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/icomoon.css">
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -32,7 +33,7 @@
                         <div class="sidebar">
                             <h2><a href="index.html" class="text-capitalize text-center">manage result</a></h2>
                             <ul>
-                                <li><a href="#"><span class="glyphicon glyphicon-home"></span>Dashboard</a></li>
+                                <li><a href=""><span class="glyphicon glyphicon-home"></span>Dashboard</a></li>
                                 <li><a href="inc/addclass.php" onclick="load_part(this, event)">Create Class</a></li>
                                 <li><a href="inc/addsubject.php" onclick="load_part(this, event)">Create Subject</a></li>
                                 <li><a href="inc/regsubtocls.php" onclick="load_part(this, event)">Add Subject to Class</a></li>
@@ -60,7 +61,32 @@
                             </div>
                         </div>
                         <div class="content">
-                            
+                            <div class="main">
+                                <div class="col-sm-3 col-xs-6">
+                                    <div class="each">
+                                        <a href="inc/addclass.php" onclick="load_part(this, event)">
+                                            <span class="icon-puzzle"></span>
+                                            <p>Create Class</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-xs-6">
+                                    <div class="each">
+                                        <a href="inc/addsubject.php" onclick="load_part(this, event)">
+                                            <span class="icon-scope"></span>
+                                            <p>Create Subject</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-xs-6">
+                                    <div class="each">
+                                        <a href="inc/regsubtocls.php" onclick="load_part(this, event)">
+                                            <span class="icon-strategy"></span>
+                                            <p>Add Subject to class</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
