@@ -31,7 +31,11 @@
                     } else {
                         alert(ret.message);
                     }
+<<<<<<< HEAD
                     $('.reset').click();
+=======
+                    window.location.href = './';
+>>>>>>> origin/master
                 },
                 error: function (ret) {
                     alert('AJAX Error!');

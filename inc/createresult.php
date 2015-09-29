@@ -22,7 +22,7 @@ $oDb = new Database();
                 <option value="" default>Select a Class</option>
 
                 <?php 
-                    $qr = $oDb->query("select * from class");
+                    $qr = $oDb->query("select * from class order by class");
                     while ($result = $oDb->fetch($qr)) {
                         ?>
                         <option value="<?php echo $result['class']; ?>"><?php echo $result['class']; ?></option>

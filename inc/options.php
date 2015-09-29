@@ -9,7 +9,7 @@ if (!empty($_POST)) {
     $operation = $_POST['OP'];
     if ($operation == 'CNGSEC') {
         $val = $_POST['val'];
-        $qr = $oDb->q_fetch("select * from class where class = '$val'");
+        $qr = $oDb->q_fetch("select * from class where class = '$val' order by class");
         echo '<option value="">Select Section</option>
                 <option value="1">' . $qr['c_sec1'] . '</option>
                 <option value="2">' . $qr['c_sec2'] . '</option>
@@ -17,7 +17,7 @@ if (!empty($_POST)) {
     } elseif ($operation == 'STULST') {
         $class = $_POST['class'];
         $sec = $_POST['section'];
-        $qr = $oDb->query("select * from student where class = '$class' and s_section = '$sec'");
+        $qr = $oDb->query("select * from student where class = '$class' and s_section = '$sec' order by class");
         echo '<option value="" default>Select Student</option>';
         while ($data = $oDb->fetch($qr)) {
             echo '<option value="' . $data['stuid'] . '">' . $data['s_name'] . '</option>';
@@ -27,7 +27,11 @@ if (!empty($_POST)) {
         $sec = $_POST['section'];
         $id = $_POST['stuid'];
 
+<<<<<<< HEAD
         $qr = $oDb->query("select * from class_subject where class = '$class' and section = '$sec'");
+=======
+        $qr = $oDb->query("select * from subject where class = '$class' and s_section = '$sec' order by class");
+>>>>>>> origin/master
         echo '<input type="hidden" name="stuid" value="' . $id . '"/><h4>List of the subjects</h4>';
         while ($d = $oDb->fetch($qr)) {
             echo '<div class="col-md-4"><div class="col-sm-7 pl0"><input type="hidden" name="sub_name[]" value="' . $d['subname'] . '"/><label>' . $d['subname'] . ':</label></div><div class="col-sm-5 pr0"><input type="text" name="marks[]" class="form-control" placeholder="Mark"/></div></div>';

@@ -9,6 +9,7 @@ $oDb = new Database();
         <form action="func/form_submit.php" method="post">
             <input type="hidden" name="OP" value="REGSUBCLS" />
 
+<<<<<<< HEAD
             <div class="col-sm-3 pl0">
                 <select name="class" id="" class="form-control" onchange="cngSection(this)">
                     <option value="" default>Select a Class</option>
@@ -19,6 +20,15 @@ $oDb = new Database();
                             ?>
                             <option value="<?php echo $result['class']; ?>"><?php echo $result['class']; ?></option>
                             <?php
+=======
+            <div class="col-sm-4 pl0">
+                <select class="form-control" name="class">
+                    <option value="" default>Select Class</option>
+                    <?php
+                        $qr = $oDb->query("select * from class order by class");
+                        while ($d = $oDb->fetch($qr)) {
+                            echo '<option value="' . $d['class'] . '">' . $d['class'] . '</option>';
+>>>>>>> origin/master
                         }
                     ?>
                 </select>
