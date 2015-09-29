@@ -30,6 +30,7 @@ $oDb = new Database();
         <div class="col-sm-3 pl0">
             <input type="submit" value="Add Subject" class="btn btn-block btn-success" onclick="submitMyForm(this, event)">
         </div>
+        <input type="reset" class="reset"/>
     </form>
     <h4>List of Subjects</h4>
     <table class="table table-bordered">

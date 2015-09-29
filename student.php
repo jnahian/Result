@@ -27,9 +27,11 @@
         
         <div class="container-fluid">
             <div class="row">
+                <div class="student">
                 <h1 class="text-uppercase text-center sname">school name</h1>
-                <div class="student show_res">
-                    <div class="col-sm-6">
+                <p class="text-center">Address</p>
+                    <div class="show_res">
+                        <div class="col-sm-6">
                         <div class="row text-center">
                             <h2>Search Result</h2>
                             <form action="inc/options.php" method="post">
@@ -90,6 +92,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>

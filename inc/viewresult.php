@@ -43,7 +43,9 @@ $oDb = new Database();
 
         <div class="clearfix"></div>
 
-        <div class="show_res"></div>
+        <div class="show_res printable">
+            
+        </div>
 
     </form>
     

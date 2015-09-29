@@ -275,28 +275,97 @@ if (!empty($_POST)) {
     } 
     elseif ($operation == 'REGSUBCLS') {
         if (!empty($_POST)) {
-            $class = $_POST['class'];
-            if (isset($_POST['subjects'])) {
-                $subs = $_POST['subjects'];
-                foreach ($subs as $sub) {
-                    $q = $oDb->query("SELECT * from class_subject where subid = '$sub' and class = '$class'");
-                    if ($q->num_rows < 1) {
-                        if ($qr = $oDb->query("INSERT into class_subject (subid, class) values ('$sub', '$class')")) {
-                            $ret['message'] = 'Subjects added Successfully';
-                            $ret['success'] = true;
-                        } else {
-                            $ret['message'] = 'Failed to add Subjects!';
+            if(!empty($_POST['class'])){
+                $class = $_POST['class'];
+                if(!empty($_POST['section'])){
+                    $sec = $_POST['section'];
+                    if (isset($_POST['subjects'])) {
+                        $subs = $_POST['subjects'];
+                        foreach ($subs as $sub) {
+                            $q = $oDb->query("SELECT * from class_subject where subname = '$sub' and class = '$class' and section = '$sec'");
+                            if ($q->num_rows < 1) {
+                                if ($qr = $oDb->query("INSERT into class_subject (subname, class, section) values ('$sub', '$class', '$sec')")) {
+                                    $ret['message'] = 'Subjects added Successfully';
+                                    $ret['success'] = true;
+                                } else {
+                                    $ret['message'] = 'Failed to add Subjects!';
+                                }
+                            } else
+                                $ret['message'] = 'Subjects Already Exist!';
                         }
-                    } else
-                        $ret['message'] = 'Duplicate Subjects Inserted!';
+                    } else {
+                        $ret['message'] = 'No Subject Selected. You Must Select one subject!';
+                    }
+                } else {
+                    $ret['message'] = 'Select A section first';
                 }
             } else {
-                $ret['message'] = 'You Must Select one subject!';
+                $ret['message'] = 'ERROR! Select A class first';
             }
         } else {
             $ret['message'] = 'ERROR! Empty form Submitted';
         }
     } 
+    elseif ( $operation == 'CRTUPER' ) {
+        $pname = trim(htmlentities($_POST['pname'], ENT_QUOTES));
+        
+        if(!empty($pname)){
+            $q = $oDb->query("SELECT * from permission where p_name = '$pname' ");
+            if ($q->num_rows < 1) {
+                if ($qr = $oDb->query("INSERT into permission (p_name) values ('$pname')")) {
+                    $ret['message'] = 'Permission added Successfully';
+                    $ret['success'] = true;
+                } else {
+                    $ret['message'] = 'Failed to add Permission!';
+                }
+            } else {
+                $ret['message'] = 'Already Exists!';
+            }
+        } else {
+                $ret['message'] = 'Permission name cannnot be Empty!';
+            }
+        
+    }
+    elseif ( $operation == 'SETPER' ) {
+        if (!empty($_POST['user'])){
+            $uid = $_POST['user'];
+            $pname = $_POST['pname'];
+            
+            foreach ($pname as $i => $n){
+                $r[$i][0] = $n;
+            }
+            
+            if (isset($_POST['read']) || isset($_POST['write']) || isset($_POST['delete'])){
+                
+                if(isset($_POST['read'])){
+                    $read = $_POST['read'];
+                    foreach ($read as $i => $n){
+                        $r[$i][1] = $n;
+                    } 
+                }
+                
+                if(isset($_POST['write'])){
+                    $write = $_POST['write'];
+                    foreach ($write as $i => $n){
+                        $r[$i][2] = $n;
+                    }
+                }
+                
+                if(isset($_POST['delete'])){
+                    $delete = $_POST['delete'];
+                    foreach ($delete as $i => $n){
+                        $r[$i][3] = $n;
+                    }
+                }
+                
+                print_r($r);
+            } else {
+                $ret['message'] = 'Choose User Permissions!';
+            }
+        } else {
+            $ret['message'] = 'Select A user First!';
+        }
+    }
     else {
         $ret['message'] = 'Operation Not Found';
     }

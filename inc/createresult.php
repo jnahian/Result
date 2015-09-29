@@ -51,7 +51,7 @@ $oDb = new Database();
         <!--        <div class = "col-sm-3 pl0">
                     <input type = "submit" value = "Save" class = "btn btn-block btn-success" onclick = "submitMyForm(this, event)">
                 </div>-->
-
+        <input type="reset" class="reset"/>
     </form>
     
 </div>

@@ -9,15 +9,23 @@ $oDb = new Database();
         <form action="func/form_submit.php" method="post">
             <input type="hidden" name="OP" value="REGSUBCLS" />
 
-            <div class="col-sm-4 pl0">
-                <select class="form-control" name="class">
-                    <option value="" default>Select Class</option>
-                    <?php
-                        $qr = $oDb->query("select * from class");
-                        while ($d = $oDb->fetch($qr)) {
-                            echo '<option value="' . $d['class'] . '">' . $d['class'] . '</option>';
+            <div class="col-sm-3 pl0">
+                <select name="class" id="" class="form-control" onchange="cngSection(this)">
+                    <option value="" default>Select a Class</option>
+
+                    <?php 
+                        $qr = $oDb->query("select * from class order by class");
+                        while ($result = $oDb->fetch($qr)) {
+                            ?>
+                            <option value="<?php echo $result['class']; ?>"><?php echo $result['class']; ?></option>
+                            <?php
                         }
                     ?>
+                </select>
+            </div>
+            <div class="col-sm-3 pl0">
+                <select name="section" class="form-control option2" onchange="stu_list(this)">
+                    <option value="" default>Select Class First</option>
                 </select>
             </div>
             <div class="clearfix"></div>
@@ -27,7 +35,7 @@ $oDb = new Database();
                 while ($d = $oDb->fetch($qr)) {
                     echo    '<div class="col-sm-3">
                                 <div class="row">
-                                    <input id="id_'.$d['subid'].'" type="checkbox" name="subjects[]" value="'.$d['subid'].'" />
+                                    <input id="id_'.$d['subid'].'" type="checkbox" name="subjects[]" value="'.$d['s_name'].'" />
                                     <label for="id_'.$d['subid'].'">'.$d['s_name'].'</label>
                                 </div>
                             </div>';
@@ -36,6 +44,7 @@ $oDb = new Database();
 
             <div class="clearfix"></div>
             <input type="submit" value="Add subjects to Class" class="btn btn-info" onclick="submitMyForm(this, event)">
+            <input type="reset" class="reset"/>
         </form>
     </div>
     

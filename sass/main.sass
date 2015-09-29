@@ -49,7 +49,7 @@ ul, ol
     padding: 15px 0
     h2
         margin: 0
-        border-bottom: 1px solid $light
+        border-bottom: 1px solid $gray
         font-size: 24px
         margin-bottom: 20px
         a
@@ -68,11 +68,11 @@ ul, ol
             &:hover a, &.active a
                 background: $secondery
             &:last-child
-                border-top: 1px solid $light
+                border-top: 1px solid $gray
                 
 /*topbar codes*/
 .topbar
-    border-bottom: 1px solid $light
+    border-bottom: 1px solid $gray
     overflow: hidden
     h3
         margin: 0
@@ -99,14 +99,14 @@ ul, ol
                 line-height: 35px
 /*login page codes*/
 .login
-    background: $primary
     height: 100vh
     
     .box
-        background: $f1
+        background: $white
         padding: 20px
         overflow: hidden
         margin-top: 20vh
+        box-shadow: 0 0 10px $secondery
         h2
             margin: 0
             padding-bottom: 10px
@@ -138,12 +138,12 @@ table
             height: auto
             
 .student 
-    padding: 20px
+    padding: 30px
     background: $white
     margin: 5% 20% 
     overflow: hidden
     box-shadow: 0 0 3px $secondery
-    > .col-sm-6:first-child
+    .col-sm-6:first-child
         border-right: 2px solid $secondery
     input, select
         margin-bottom: 15px
@@ -164,6 +164,17 @@ input[type="checkbox"] + label
     transform: translateY(-2px)
     margin-left: 10px
 h1.sname
-    margin-top: 5%
+    margin-top: 2%
+    margin-bottom: 0
     color: $primary
     font-size: 30px
+    + p
+        font-size: 18px
+        color: $primary
+        padding-bottom: 20px
+
+input[type="reset"]
+    display: none
+    
+/*Codes for Responsive*/
+@import 'responsive'

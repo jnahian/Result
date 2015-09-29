@@ -22,6 +22,7 @@ $oDb = new Database();
             <input type="email" placeholder="Email" class="form-control" name="email">
             <input type="password" placeholder="Password" class="form-control" name="pass">
             <input type="submit" value="Register" class="btn btn-block btn-info" onclick="submitMyForm(this, event)">
+            <input type="reset" class="reset"/>
         </form>
     </div>
     <div class="col-sm-6 pr0">
@@ -41,7 +42,7 @@ $oDb = new Database();
                 <select class="form-control" name="class" onchange="cngSection(this)">
                     <option value="" default>Select Class</option>
                     <?php 
-                        $qr = $oDb->query("select * from class");
+                        $qr = $oDb->query("select * from class order by class");
                         while ($d = $oDb->fetch($qr)){
                             echo '<option value="'.$d['class'].'">'.$d['class'].'</option>';
                         }
@@ -55,6 +56,7 @@ $oDb = new Database();
             </div>
 
             <input type="submit" value="Add to Class" class="btn btn-block btn-info" onclick="submitMyForm(this, event)">
+            <input type="reset" class="reset"/>
         </form>
     </div>
     <div class="clearfix"></div>

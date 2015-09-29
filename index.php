@@ -33,13 +33,14 @@
                             <h2><a href="index.html" class="text-capitalize text-center">manage result</a></h2>
                             <ul>
                                 <li><a href="#"><span class="glyphicon glyphicon-home"></span>Dashboard</a></li>
-                                <li><a href="inc/addclass.php" onclick="load_part(this, event)">Create Class</a></li>
-                                <li><a href="inc/addsubject.php" onclick="load_part(this, event)">Create Subject</a></li>
-                                <li><a href="inc/regsubtocls.php" onclick="load_part(this, event)">Add Subject to Class</a></li>
-                                <li><a href="inc/addstudent.php" onclick="load_part(this, event)">Register Student</a></li>
-                                <li><a href="inc/createresult.php" onclick="load_part(this, event)">Create Result</a></li>
-                                <li><a href="inc/viewresult.php" onclick="load_part(this, event)">View Result</a></li>
-                                <li><a href="inc/adduser.php" onclick="load_part(this, event)">Create User</a></li>
+                                <li><a href="inc/student_profile.php" onclick="load_part(this, event)"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+                                
+                                <?php
+                                    $oPermission = new Permission();
+                                    echo $oPermission->user_permitted_menu();
+                                    
+                                ?>
+                                
                                 <li><a href="login/index.php?out"><span class="glyphicon glyphicon-new-window"></span> Logout</a></li>
                             </ul>
                         </div>

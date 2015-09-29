@@ -47,7 +47,7 @@ ul, ol {
 }
 .sidebar h2 {
   margin: 0;
-  border-bottom: 1px solid #65c4ef;
+  border-bottom: 1px solid #595959;
   font-size: 24px;
   margin-bottom: 20px;
 }
@@ -69,12 +69,12 @@ ul, ol {
   background: #234d93;
 }
 .sidebar ul li:last-child {
-  border-top: 1px solid #65c4ef;
+  border-top: 1px solid #595959;
 }
 
 /*topbar codes */
 .topbar {
-  border-bottom: 1px solid #65c4ef;
+  border-bottom: 1px solid #595959;
   overflow: hidden;
 }
 .topbar h3 {
@@ -111,14 +111,14 @@ ul, ol {
 
 /*login page codes */
 .login {
-  background: #1a3562;
   height: 100vh;
 }
 .login .box {
-  background: #f1f1f1;
+  background: #fff;
   padding: 20px;
   overflow: hidden;
   margin-top: 20vh;
+  box-shadow: 0 0 10px #234d93;
 }
 .login .box h2 {
   margin: 0;
@@ -157,13 +157,13 @@ table td img {
 }
 
 .student {
-  padding: 20px;
+  padding: 30px;
   background: #fff;
   margin: 5% 20%;
   overflow: hidden;
   box-shadow: 0 0 3px #234d93;
 }
-.student > .col-sm-6:first-child {
+.student .col-sm-6:first-child {
   border-right: 2px solid #234d93;
 }
 .student input, .student select {
@@ -193,7 +193,28 @@ input[type="checkbox"] + label {
 }
 
 h1.sname {
-  margin-top: 5%;
+  margin-top: 2%;
+  margin-bottom: 0;
   color: #1a3562;
   font-size: 30px;
+}
+h1.sname + p {
+  font-size: 18px;
+  color: #1a3562;
+  padding-bottom: 20px;
+}
+
+input[type="reset"] {
+  display: none;
+}
+
+/*Codes for Responsive */
+@media (max-width: 767px) {
+  .student {
+    margin: 5% 10%;
+  }
+  .student .col-sm-6:first-child {
+    border-right: 0;
+    border-bottom: 2px solid #1a3562;
+  }
 }

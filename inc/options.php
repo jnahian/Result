@@ -27,10 +27,10 @@ if (!empty($_POST)) {
         $sec = $_POST['section'];
         $id = $_POST['stuid'];
 
-        $qr = $oDb->query("select * from subject where class = '$class' and s_section = '$sec'");
+        $qr = $oDb->query("select * from class_subject where class = '$class' and section = '$sec'");
         echo '<input type="hidden" name="stuid" value="' . $id . '"/><h4>List of the subjects</h4>';
         while ($d = $oDb->fetch($qr)) {
-            echo '<div class="col-md-4"><div class="col-sm-7 pl0"><input type="hidden" name="sub_name[]" value="' . $d['s_name'] . '"/><label>' . $d['s_name'] . ':</label></div><div class="col-sm-5 pr0"><input type="text" name="marks[]" class="form-control" placeholder="Mark"/></div></div>';
+            echo '<div class="col-md-4"><div class="col-sm-7 pl0"><input type="hidden" name="sub_name[]" value="' . $d['subname'] . '"/><label>' . $d['subname'] . ':</label></div><div class="col-sm-5 pr0"><input type="text" name="marks[]" class="form-control" placeholder="Mark"/></div></div>';
         }
         echo '<div class = "col-sm-3 pl0">
                 <input type = "submit" value = "Save" class = "btn btn-block btn-success" onclick = "submitMyForm(this, event)">
@@ -42,22 +42,26 @@ if (!empty($_POST)) {
 //        echo $class . '/' . $stuid.'/'.$exam;
 
         if (!empty($class) && !empty($exam) && !empty($stuid)) {
-            if ($qr = $oDb->query("SELECT * from result natural join student where stuid = '$stuid' and exam_id = '$exam' and class = '$class' ")) {
-                
-                $data = $oDb->fetch($qr);
-                
-                echo '<h4>Result Details</h4>
+            $q = $oDb->query("select * from result where stuid = '$stuid' and exam_id = '$exam' and class = '$class' ");
+
+            if ($q->num_rows > 0) {
+
+                $data = $oDb->q_fetch("select * from student natural join result where stuid = '$stuid' and exam_id = '$exam' and class = '$class' ");
+
+                echo '<h4>Result Details <a href="#" class="pull-right" onclick="print_my_page(this, event)" >Print</a></h4>
                     <div class="col-xs-10">
                         <div class="row">
-                            <p><b>Name:</b> '.$data['s_name'].'</p>
-                                <p><b>Father Name:</b> '.$data['s_fname'].'</p>
-                                <p><b>Address:</b> '.$data['s_address'].'</p>
-                                <p><b>Class:</b> '.$data['class'].'</p>
+                            <p><b>Name:</b> ' . $data['s_name'] . '</p>
+                                <p><b>Father Name:</b> ' . $data['s_fname'] . '</p>
+                                <p><b>Address:</b> ' . $data['s_address'] . '</p>
+                                <p><b>Class:</b> ' . $data['class'] . '</p>
+                                <p><b>Exam:</b> ' . $oRes->exam_name($data['exam_id']) . '</p>
+                                <p><b>Result:</b> ' . $oRes->GPA($stuid, $class, $exam) . '</p>
                         </div>
                     </div>
                     <div class="col-xs-2">
                         <div class="row">
-                            <img src="uploads/images/'.$data['s_img'].'" class="img-responsive img-thumbnail" alt="'.$data['s_img'].'" />
+                            <img src="uploads/images/' . $data['s_img'] . '" class="img-responsive img-thumbnail" alt="' . $data['s_img'] . '" />
                         </div>
                     </div>
                     
@@ -65,6 +69,7 @@ if (!empty($_POST)) {
                         <thead>
 
                             <tr>
+                                <th>#</th>
                                 <th>Subject Names</th>
                                 <th>Total Marks</th>
                                 <th>Pass Marks</th>
@@ -73,18 +78,35 @@ if (!empty($_POST)) {
                             </tr>
                         </thead>
                         <tbody>';
-                while ($data = $oDb->fetch($qr)) {
-                    echo '<tr>
-                    <th>' . $data['sub_name'] . '</th>
-                    <th>Total Marks</th>
-                    <th>Pass Marks</th>
-                    <th>' . $data['marks'] . '</th>
-                    <th>' . $oCheck->chkGrade($data['marks']) . '</th>
+
+                if ($qr = $oDb->query("SELECT * from result where stuid = '$stuid' and exam_id = '$exam' and class = '$class' ")) {
+                    $i = 1;
+                    while ($data = $oDb->fetch($qr)) {
+                        echo '<tr>
+                    <td>' . $i++ . '</td>
+                    <td>' . $data['sub_name'] . '</td>
+                    <td>Total Marks</td>
+                    <td>Pass Marks</td>
+                    <td class="text-center">' . $data['marks'] . '</td>
+                    <td class="text-center">' . $oRes->point($data['marks']) . '(' . $oRes->grade($data['marks']) . ')' . '</td>
                 </tr>';
+                    }
+                    echo '<tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-right">Total =</td>
+                                <td class="text-center">' . $oRes->total($stuid, $class, $exam) . '</td>
+                                <td class="text-center">' . $oRes->GPA($stuid, $class, $exam) . ' (GPA)</td>
+                            </tr>
+                        </tfoot>
+                        </tbody></table> <a href="" class="btn btn-info">Go Back</a>';
                 }
-                echo '</tbody></table> <a href="" class="btn btn-info">Go Back</a>';
-            } 
-        } 
+            } else {
+                echo '<h2 class="text-center text-danger">No Result Found! Please Check Your Information</h2><a class="btn btn-info" href="">Go Back</a>';
+            }
+        }
     }
 }
     

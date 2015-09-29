@@ -31,6 +31,7 @@
                     } else {
                         alert(ret.message);
                     }
+                    $('.reset').click();
                 },
                 error: function (ret) {
                     alert('AJAX Error!');
@@ -125,6 +126,8 @@
                 id = t.val(),
                 sec = $('.option2').val(),
                 cls = $('.option1').val();
+        
+//        alert(id+'/'+sec+'/'+cls);
 
         $.ajax({
             url: 'inc/options.php',
@@ -195,8 +198,16 @@
         }
         return false;
     }
-
-   
-
-
+    
+    cng_option_value = function (that) {
+        $val = $(that).val();
+        if( $val == 0 ){
+            $val = $(that).val(1);
+        } else if( $val == 1 ){
+            $val = $(that).val(0);
+        }
+       
+//        alert($val);
+       
+    }
 }(jQuery))

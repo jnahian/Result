@@ -17,6 +17,7 @@
         <div class="col-sm-3">
             <input type="submit" value="Add Class" class="btn btn-block btn-success" onclick="submitMyForm(this, event)">
         </div>
+        <input type="reset" class="reset"/>
     </form>
     <h4>List of class</h4>
     <table class="table table-bordered">
@@ -35,7 +36,7 @@
             <?php 
                 require_once('../func/functions.php');
                 $oDb = new Database();
-                $query = $oDb->query("SELECT * from class");
+                $query = $oDb->query("SELECT * from class order by class");
                 $sl = 1;
                 while ($result = $oDb->fetch($query)){ ?>
                     <tr>
