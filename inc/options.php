@@ -27,11 +27,7 @@ if (!empty($_POST)) {
         $sec = $_POST['section'];
         $id = $_POST['stuid'];
 
-<<<<<<< HEAD
         $qr = $oDb->query("select * from class_subject where class = '$class' and section = '$sec'");
-=======
-        $qr = $oDb->query("select * from subject where class = '$class' and s_section = '$sec' order by class");
->>>>>>> origin/master
         echo '<input type="hidden" name="stuid" value="' . $id . '"/><h4>List of the subjects</h4>';
         while ($d = $oDb->fetch($qr)) {
             echo '<div class="col-md-4"><div class="col-sm-7 pl0"><input type="hidden" name="sub_name[]" value="' . $d['subname'] . '"/><label>' . $d['subname'] . ':</label></div><div class="col-sm-5 pr0"><input type="text" name="marks[]" class="form-control" placeholder="Mark"/></div></div>';
