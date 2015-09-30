@@ -31,7 +31,7 @@
                 <div class="col-sm-2">
                     <div class="row">
                         <div class="sidebar">
-                            <h2><a href="index.html" class="text-capitalize text-center">manage result</a></h2>
+                            <h2><a href="index.php" class="text-capitalize text-center">manage result</a></h2>
                             <ul>
                                 <li><a href="#"><span class="glyphicon glyphicon-home"></span>Dashboard</a></li>
                                 <li><a href="inc/student_profile.php" onclick="load_part(this, event)"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
